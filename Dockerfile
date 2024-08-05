@@ -24,5 +24,8 @@ ENV FLASK_RUN_HOST=0.0.0.0
 # Add a script to create a .env file from environment variables
 COPY create_env_file.sh /app/
 
+# Ensure the script has execute permissions
+RUN chmod +x /app/create_env_file.sh
+
 # Run the script to create .env file and then start the server
 CMD ["sh", "-c", "./create_env_file.sh && gunicorn -w 4 -b 0.0.0.0:5000 app:app"]
